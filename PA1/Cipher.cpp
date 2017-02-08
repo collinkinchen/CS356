@@ -123,11 +123,19 @@ void Cipher::write(string outFile){
 
 void Cipher::removepadding(){
 	
-	int numToDel = 8 - (count % 8);
-		count -= numToDel;
+	// int numToDel = (count % 8);
+	// cout << numToDel << endl;
+		// count -= numToDel;
+		
 	// for(int i = 0; i < count; i++){
-		// cout << i << ": " << plainDecVec[i] << endl;	
-	// }
+		// cout << plainDecVec[i] << endl;
+	// }	
+	//cout << "Before count:" << count << endl;
+		int tempCount = count;
+	for(int i = 0; i < tempCount; i++){
+		if( plainDecVec[i] > 127 || plainDecVec[i] < 0) count--;
+	}
+	//cout << "after count:" << count << endl;
 
 }
 
